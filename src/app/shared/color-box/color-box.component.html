@@ -1,0 +1,27 @@
+<div class="color-box-container">
+  <div
+    class="color-square d-inline-flex flex-column justify-content-end me-2"
+    [ngStyle]="{ 'background-color': hexString }"
+  >
+    <div *ngIf="showLabels">
+      <p
+        class="mb-0 ps-1"
+        [ngClass]="color.isDark() ? 'text-light' : 'text-dark'"
+      >
+        {{ hexString }}
+      </p>
+      <p
+        class="mb-0 ps-1"
+        [ngClass]="color.isDark() ? 'text-light' : 'text-dark'"
+      >
+        {{ rgbaString }}
+      </p>
+      <p
+        class="mb-0 ps-1"
+        [ngClass]="color.isDark() ? 'text-light' : 'text-dark'"
+      >
+        {{ hslaString }}
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+.color-box-container {
+  display: inline-block;
+  & p {
+    font-size: 11px;
+  }
+}
+
+.color-square {
+  height: 55px;
+  width: 125px;
+  border: 3px solid #000;
+}
