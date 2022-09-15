@@ -1,5 +1,5 @@
 {
-  "name": "color-generator",
+  "name": "color-calculator",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -14,6 +14,7 @@
     "@angular/common": "^14.0.0",
     "@angular/compiler": "^14.0.0",
     "@angular/core": "^14.0.0",
+    "@angular/fire": "^7.4.1",
     "@angular/forms": "^14.0.0",
     "@angular/localize": "^14.0.0",
     "@angular/platform-browser": "^14.0.0",
