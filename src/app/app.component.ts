@@ -9,7 +9,6 @@ import { Color, HSLColor, HTMLNamedColor, NAMED_COLORS, RGBColor } from './app.b
 })
 export class AppComponent {
 
-  colorInput: Color;
   color: tinycolor.Instance;
   complementaryColor: tinycolor.Instance;
   splitComplementaryColors: tinycolor.Instance[];
@@ -24,8 +23,7 @@ export class AppComponent {
   tc = tinycolor; // Used in template
 
   constructor() {
-    this.color = tinycolor('#FFF');
-    this.colorInput = new Color(this.color.toHslString(), this.color.toHexString(), this.color.toRgbString());
+    this.color = tinycolor.random();
     this.complementaryColor = tinycolor(this.color.toHexString()).complement();
     this.splitComplementaryColors = tinycolor(this.color.toHexString()).splitcomplement();
     this.triadColors = tinycolor(this.color.toHexString()).triad();
@@ -35,46 +33,8 @@ export class AppComponent {
     this.monochromaticColors = tinycolor(this.color.toHexString()).monochromatic();
   }
 
-  onColorChange(type: string, namedColor?: HTMLNamedColor): void {
-    const color = this.colorInput;
-    switch (type) {
-      case 'hsl':
-        this.color = tinycolor(color.hsl.toString());
-        this.colorInput.hex = this.color.toHexString();
-        this.colorInput.rgb = new RGBColor(this.color.toRgbString().toLowerCase());
-        break;
-      case 'rgb':
-        this.color = tinycolor(color.rgb.toString());
-        this.colorInput.hex = this.color.toHexString();
-        this.colorInput.hsl = new HSLColor(this.color.toHslString());
-        break;
-      case 'hex':
-        this.color = tinycolor(color.hex);
-        this.colorInput.rgb = new RGBColor(this.color.toRgbString().toLowerCase());
-        this.colorInput.hsl = new HSLColor(this.color.toHslString());
-        break;
-      case 'namedColor':
-        this.selectedNamedColor = namedColor!;
-        this.color = tinycolor(namedColor!.hex);
-        this.colorInput.rgb = new RGBColor(this.color.toRgbString().toLowerCase());
-        this.colorInput.hsl = new HSLColor(this.color.toHslString());
-        this.colorInput.hex = namedColor!.hex;
-        break;
-      default:
-        console.error(`Unknown type: ${type}`);
-    }
-    this.updateColors();
-  }
-
-  onFilterColors(event: any): void {
-    if (event.target.value) {
-      this.htmlNamedColors = NAMED_COLORS.filter((color: HTMLNamedColor) => color.name.toLowerCase().includes(event.target.value.toLowerCase()));
-    } else {
-      this.htmlNamedColors = NAMED_COLORS;
-    }
-  }
-
-  updateColors(): void {
+  updateColors(color: tinycolor.Instance): void {
+    this.color = color;
     this.complementaryColor = tinycolor(this.color.toHexString()).complement();
     this.splitComplementaryColors = tinycolor(this.color.toHexString()).splitcomplement();
     this.triadColors = tinycolor(this.color.toHexString()).triad();

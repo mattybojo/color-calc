@@ -7,11 +7,13 @@ import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ColorBoxComponent } from './shared/color-box/color-box.component';
+import { ColorSelectorComponent } from './shared/color-selector/color-selector.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ColorBoxComponent
+    ColorBoxComponent,
+    ColorSelectorComponent
   ],
   imports: [
     BrowserModule,

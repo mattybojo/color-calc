@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import * as tinycolor from 'tinycolor2';
 
 @Component({
-  selector: 'cg-color-box',
+  selector: 'cc-color-box',
   templateUrl: './color-box.component.html',
   styleUrls: ['./color-box.component.scss']
 })

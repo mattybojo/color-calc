@@ -1,196 +1,13 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 col-md-6">
-      <!-- HSL -->
-      <div class="row pt-1">
-        <div class="col-1 d-flex align-items-center offset-1">
-          <p class="mb-0">HSL</p>
-        </div>
-        <div class="col-3">
-          <input
-            type="number"
-            aria-label="hue"
-            class="form-control form-control-sm"
-            [(ngModel)]="colorInput.hsl.h"
-            (input)="onColorChange('hsl')"
-          />
-          <input
-            type="range"
-            min="0"
-            max="360"
-            class="slider mt-2 w-100"
-            [(ngModel)]="colorInput.hsl.h"
-            (input)="onColorChange('hsl')"
-          />
-        </div>
-        <div class="col-3">
-          <div class="input-group input-group-sm">
-            <input
-              type="number"
-              aria-label="saturation"
-              class="form-control form-control-sm"
-              [(ngModel)]="colorInput.hsl.s"
-              (input)="onColorChange('hsl')"
-            />
-            <span class="input-group-text">%</span>
-          </div>
-          <input
-            type="range"
-            min="0"
-            max="100"
-            class="slider mt-2 w-100"
-            [(ngModel)]="colorInput.hsl.s"
-            (input)="onColorChange('hsl')"
-          />
-        </div>
-        <div class="col-3">
-          <div class="input-group input-group-sm">
-            <input
-              type="number"
-              aria-label="luminosity"
-              class="form-control form-control-sm"
-              [(ngModel)]="colorInput.hsl.l"
-              (input)="onColorChange('hsl')"
-            />
-            <span class="input-group-text">%</span>
-          </div>
-          <input
-            type="range"
-            min="0"
-            max="100"
-            class="slider mt-2 w-100"
-            [(ngModel)]="colorInput.hsl.l"
-            (input)="onColorChange('hsl')"
-          />
-        </div>
-      </div>
-      <!-- RGB -->
-      <div class="row">
-        <div class="col-1 d-flex align-items-center offset-1">
-          <p class="mb-0">RGB</p>
-        </div>
-        <div class="col-3">
-          <input
-            type="number"
-            aria-label="red"
-            class="form-control form-control-sm"
-            [(ngModel)]="colorInput.rgb.r"
-            (input)="onColorChange('rgb')"
-          />
-          <input
-            type="range"
-            min="0"
-            max="255"
-            class="slider mt-2 w-100"
-            [(ngModel)]="colorInput.rgb.r"
-            (input)="onColorChange('rgb')"
-          />
-        </div>
-        <div class="col-3">
-          <input
-            type="number"
-            aria-label="green"
-            class="form-control form-control-sm"
-            [(ngModel)]="colorInput.rgb.g"
-            (input)="onColorChange('rgb')"
-          />
-          <input
-            type="range"
-            min="0"
-            max="255"
-            class="slider mt-2 w-100"
-            [(ngModel)]="colorInput.rgb.g"
-            (input)="onColorChange('rgb')"
-          />
-        </div>
-        <div class="col-3">
-          <input
-            type="number"
-            aria-label="blue"
-            class="form-control form-control-sm"
-            [(ngModel)]="colorInput.rgb.b"
-            (input)="onColorChange('rgb')"
-          />
-          <input
-            type="range"
-            min="0"
-            max="255"
-            class="slider mt-2 w-100"
-            [(ngModel)]="colorInput.rgb.b"
-            (input)="onColorChange('rgb')"
-          />
-        </div>
-      </div>
-      <!-- Hex -->
-      <div class="row">
-        <div class="col-1 d-flex align-items-center offset-1">
-          <p class="mb-0">Hex</p>
-        </div>
-        <div class="col-9">
-          <input
-            type="text"
-            aria-label="hex"
-            class="form-control form-control-sm"
-            [(ngModel)]="colorInput.hex"
-            (input)="onColorChange('hex')"
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <div class="d-flex justify-content-center my-2">— OR —</div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <div ngbDropdown class="d-flex justify-content-center">
-            <button
-              type="button"
-              class="btn btn-outline-dark"
-              id="dropdownBasic1"
-              ngbDropdownToggle
-              [ngStyle]="{
-                'background-color': !!selectedNamedColor
-                  ? selectedNamedColor.hex
-                  : '#FFF'
-              }"
-              [ngClass]="
-                !!selectedNamedColor && tc(selectedNamedColor.hex).isDark()
-                  ? 'text-light'
-                  : 'text-dark'
-              "
-            >
-              {{ selectedNamedColor?.name || "Select a color" }}
-            </button>
-            <div
-              ngbDropdownMenu
-              class="color-dropdown py-0"
-              aria-labelledby="dropdownBasic1"
-            >
-              <input
-                type="text"
-                aria-label="hex"
-                class="form-control color-filter"
-                (input)="onFilterColors($event)"
-              />
-              <button
-                ngbDropdownItem
-                [ngStyle]="{ 'background-color': namedColor.hex }"
-                [ngClass]="
-                  tc(namedColor.hex).isDark() ? 'text-light' : 'text-dark'
-                "
-                (click)="onColorChange('namedColor', namedColor)"
-                *ngFor="let namedColor of htmlNamedColors"
-              >
-                {{ namedColor.name }}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <cc-color-selector
+        [initialColor]="color"
+        (selectedColor)="updateColors($event)"
+      ></cc-color-selector>
     </div>
     <div class="col-12 col-md-6 d-flex align-items-center main-color-box">
-      <cg-color-box [color]="color"></cg-color-box>
+      <cc-color-box [color]="color"></cc-color-box>
     </div>
   </div>
   <hr />
@@ -200,7 +17,7 @@
       <p class="mb-0">Complementary</p>
     </div>
     <div class="col-6 offset-4">
-      <cg-color-box [color]="complementaryColor"></cg-color-box>
+      <cc-color-box [color]="complementaryColor"></cc-color-box>
     </div>
   </div>
   <hr />
@@ -210,11 +27,11 @@
       <p class="mb-0">Split Complementary</p>
     </div>
     <div class="col-6 offset-4">
-      <cg-color-box
+      <cc-color-box
         [color]="splitCompColor"
         [isSameMainColor]="tc.equals(color, splitCompColor)"
         *ngFor="let splitCompColor of splitComplementaryColors"
-      ></cg-color-box>
+      ></cc-color-box>
     </div>
   </div>
   <hr />
@@ -224,11 +41,11 @@
       <p class="mb-0">Triad</p>
     </div>
     <div class="col-6 offset-4">
-      <cg-color-box
+      <cc-color-box
         [color]="triad"
         [isSameMainColor]="tc.equals(color, triad)"
         *ngFor="let triad of triadColors"
-      ></cg-color-box>
+      ></cc-color-box>
     </div>
   </div>
   <hr />
@@ -238,11 +55,11 @@
       <p class="mb-0">Tetrad</p>
     </div>
     <div class="col-6 offset-4">
-      <cg-color-box
+      <cc-color-box
         [color]="tetrad"
         [isSameMainColor]="tc.equals(color, tetrad)"
         *ngFor="let tetrad of tetradColors"
-      ></cg-color-box>
+      ></cc-color-box>
     </div>
   </div>
   <hr />
@@ -252,11 +69,11 @@
       <p class="mb-0">Analogous</p>
     </div>
     <div class="col-6 offset-4">
-      <cg-color-box
+      <cc-color-box
         [color]="analogous"
         [isSameMainColor]="tc.equals(color, analogous)"
         *ngFor="let analogous of analogousColors"
-      ></cg-color-box>
+      ></cc-color-box>
     </div>
   </div>
   <hr />
@@ -266,11 +83,11 @@
       <p class="mb-0">Monochromatic</p>
     </div>
     <div class="col-6 offset-4">
-      <cg-color-box
+      <cc-color-box
         [color]="monochromatic"
         [isSameMainColor]="tc.equals(color, monochromatic)"
         *ngFor="let monochromatic of monochromaticColors"
-      ></cg-color-box>
+      ></cc-color-box>
     </div>
   </div>
   <hr />
@@ -280,7 +97,7 @@
       <p class="mb-0">Greyscale</p>
     </div>
     <div class="col-6 offset-4">
-      <cg-color-box [color]="greyscaleColor"></cg-color-box>
+      <cc-color-box [color]="greyscaleColor"></cc-color-box>
     </div>
   </div>
 </div>
