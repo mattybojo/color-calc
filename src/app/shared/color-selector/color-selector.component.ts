@@ -33,6 +33,7 @@ export class ColorSelectorComponent implements OnInit, OnChanges {
 
   onColorChange(type: string, namedColor?: HTMLNamedColor): void {
     const color = this.colorInput;
+    let isValid: boolean = true;
     switch (type) {
       case 'hsl':
         this.color = tinycolor(color.hsl.toString());
@@ -45,9 +46,13 @@ export class ColorSelectorComponent implements OnInit, OnChanges {
         this.colorInput.hsl = new HSLColor(this.color.toHslString());
         break;
       case 'hex':
-        this.color = tinycolor(color.hex);
-        this.colorInput.rgb = new RGBColor(this.color.toRgbString().toLowerCase());
-        this.colorInput.hsl = new HSLColor(this.color.toHslString());
+        if (tinycolor(color.hex).isValid()) {
+          this.color = tinycolor(color.hex);
+          this.colorInput.rgb = new RGBColor(this.color.toRgbString().toLowerCase());
+          this.colorInput.hsl = new HSLColor(this.color.toHslString());
+        } else {
+          isValid = false;
+        }
         break;
       case 'namedColor':
         this.selectedNamedColor = namedColor!;
@@ -59,7 +64,9 @@ export class ColorSelectorComponent implements OnInit, OnChanges {
       default:
         console.error(`Unknown type: ${type}`);
     }
-    this.selectedColor.emit(this.color);
+    if (isValid) {
+      this.selectedColor.emit(this.color);
+    }
   }
 
   onFilterColors(event: any): void {
