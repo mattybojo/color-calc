@@ -46,7 +46,7 @@ export class ColorSelectorComponent implements OnInit, OnChanges {
         this.colorInput.hsl = new HSLColor(this.color.toHslString());
         break;
       case 'hex':
-        if (tinycolor(color.hex).isValid()) {
+        if (tinycolor(color.hex).isValid() && color.hex.length === 7) {
           this.color = tinycolor(color.hex);
           this.colorInput.rgb = new RGBColor(this.color.toRgbString().toLowerCase());
           this.colorInput.hsl = new HSLColor(this.color.toHslString());
