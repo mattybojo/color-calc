@@ -76,4 +76,9 @@ export class ColorSelectorComponent implements OnInit, OnChanges {
       this.htmlNamedColors = NAMED_COLORS;
     }
   }
+
+  generateRandomColor(): void {
+    this.colorInput.hex = tinycolor.random().toHexString();
+    this.onColorChange('hex');
+  }
 }
