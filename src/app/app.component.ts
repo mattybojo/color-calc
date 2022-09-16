@@ -20,6 +20,7 @@ export class AppComponent {
   greyscaleColor: tinycolor.Instance;
 
   htmlNamedColors = NAMED_COLORS;
+  selectedNamedColor: HTMLNamedColor | undefined = undefined;
   tc = tinycolor; // Used in template
 
   constructor() {
@@ -34,7 +35,7 @@ export class AppComponent {
     this.monochromaticColors = tinycolor(this.color.toHexString()).monochromatic();
   }
 
-  onColorChange(type: string, hex?: string): void {
+  onColorChange(type: string, namedColor?: HTMLNamedColor): void {
     const color = this.colorInput;
     switch (type) {
       case 'hsl':
@@ -53,10 +54,11 @@ export class AppComponent {
         this.colorInput.hsl = new HSLColor(this.color.toHslString());
         break;
       case 'namedColor':
-        this.color = tinycolor(hex);
+        this.selectedNamedColor = namedColor!;
+        this.color = tinycolor(namedColor!.hex);
         this.colorInput.rgb = new RGBColor(this.color.toRgbString().toLowerCase());
         this.colorInput.hsl = new HSLColor(this.color.toHslString());
-        this.colorInput.hex = hex!;
+        this.colorInput.hex = namedColor!.hex;
         break;
       default:
         console.error(`Unknown type: ${type}`);

@@ -146,11 +146,21 @@
           <div ngbDropdown class="d-flex justify-content-center">
             <button
               type="button"
-              class="btn btn-outline-primary"
+              class="btn btn-outline-dark"
               id="dropdownBasic1"
               ngbDropdownToggle
+              [ngStyle]="{
+                'background-color': !!selectedNamedColor
+                  ? selectedNamedColor.hex
+                  : '#FFF'
+              }"
+              [ngClass]="
+                !!selectedNamedColor && tc(selectedNamedColor.hex).isDark()
+                  ? 'text-light'
+                  : 'text-dark'
+              "
             >
-              Select a color
+              {{ selectedNamedColor?.name || "Select a color" }}
             </button>
             <div
               ngbDropdownMenu
@@ -169,7 +179,7 @@
                 [ngClass]="
                   tc(namedColor.hex).isDark() ? 'text-light' : 'text-dark'
                 "
-                (click)="onColorChange('namedColor', namedColor.hex)"
+                (click)="onColorChange('namedColor', namedColor)"
                 *ngFor="let namedColor of htmlNamedColors"
               >
                 {{ namedColor.name }}
