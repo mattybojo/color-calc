@@ -9,6 +9,7 @@ import * as tinycolor from 'tinycolor2';
 export class ColorBoxComponent implements OnInit, OnChanges {
 
   @Input() color!: tinycolor.Instance;
+  @Input() isSameMainColor: boolean = false;
   @Input() showLabels: boolean = true;
 
   hexString: string = '';

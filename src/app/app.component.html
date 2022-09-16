@@ -202,6 +202,7 @@
     <div class="col-6 offset-4">
       <cg-color-box
         [color]="splitCompColor"
+        [isSameMainColor]="tc.equals(color, splitCompColor)"
         *ngFor="let splitCompColor of splitComplementaryColors"
       ></cg-color-box>
     </div>
@@ -215,6 +216,7 @@
     <div class="col-6 offset-4">
       <cg-color-box
         [color]="triad"
+        [isSameMainColor]="tc.equals(color, triad)"
         *ngFor="let triad of triadColors"
       ></cg-color-box>
     </div>
@@ -228,6 +230,7 @@
     <div class="col-6 offset-4">
       <cg-color-box
         [color]="tetrad"
+        [isSameMainColor]="tc.equals(color, tetrad)"
         *ngFor="let tetrad of tetradColors"
       ></cg-color-box>
     </div>
@@ -241,6 +244,7 @@
     <div class="col-6 offset-4">
       <cg-color-box
         [color]="analogous"
+        [isSameMainColor]="tc.equals(color, analogous)"
         *ngFor="let analogous of analogousColors"
       ></cg-color-box>
     </div>
@@ -254,6 +258,7 @@
     <div class="col-6 offset-4">
       <cg-color-box
         [color]="monochromatic"
+        [isSameMainColor]="tc.equals(color, monochromatic)"
         *ngFor="let monochromatic of monochromaticColors"
       ></cg-color-box>
     </div>

@@ -3,7 +3,7 @@
     class="color-square d-inline-flex flex-column justify-content-end me-2"
     [ngStyle]="{ 'background-color': hexString }"
   >
-    <div *ngIf="showLabels">
+    <div *ngIf="showLabels" [class.italics]="isSameMainColor">
       <p
         class="mb-0 ps-1"
         [ngClass]="color.isDark() ? 'text-light' : 'text-dark'"
