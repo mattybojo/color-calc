@@ -2,6 +2,17 @@ p {
   font-size: 14px;
 }
 
+.main-color-box {
+  justify-content: flex-start;
+}
+
+@media only screen and (max-width: 595.9px) {
+  .main-color-box {
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+}
+
 .slider {
   -webkit-appearance: none;
   width: 100%;

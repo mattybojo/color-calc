@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <!-- HSL -->
       <div class="row pt-1">
         <div class="col-1 d-flex align-items-center offset-1">
@@ -18,7 +18,7 @@
             type="range"
             min="0"
             max="360"
-            class="slider mt-2"
+            class="slider mt-2 w-100"
             [(ngModel)]="colorInput.hsl.h"
             (input)="onColorChange('hsl')"
           />
@@ -38,7 +38,7 @@
             type="range"
             min="0"
             max="100"
-            class="slider mt-2"
+            class="slider mt-2 w-100"
             [(ngModel)]="colorInput.hsl.s"
             (input)="onColorChange('hsl')"
           />
@@ -58,7 +58,7 @@
             type="range"
             min="0"
             max="100"
-            class="slider mt-2"
+            class="slider mt-2 w-100"
             [(ngModel)]="colorInput.hsl.l"
             (input)="onColorChange('hsl')"
           />
@@ -81,7 +81,7 @@
             type="range"
             min="0"
             max="255"
-            class="slider mt-2"
+            class="slider mt-2 w-100"
             [(ngModel)]="colorInput.rgb.r"
             (input)="onColorChange('rgb')"
           />
@@ -98,7 +98,7 @@
             type="range"
             min="0"
             max="255"
-            class="slider mt-2"
+            class="slider mt-2 w-100"
             [(ngModel)]="colorInput.rgb.g"
             (input)="onColorChange('rgb')"
           />
@@ -115,7 +115,7 @@
             type="range"
             min="0"
             max="255"
-            class="slider mt-2"
+            class="slider mt-2 w-100"
             [(ngModel)]="colorInput.rgb.b"
             (input)="onColorChange('rgb')"
           />
@@ -179,7 +179,7 @@
         </div>
       </div>
     </div>
-    <div class="col-6 d-flex justify-content-start align-items-center">
+    <div class="col-12 col-md-6 d-flex align-items-center main-color-box">
       <cg-color-box [color]="color"></cg-color-box>
     </div>
   </div>
@@ -260,7 +260,7 @@
   </div>
   <hr />
   <!-- Greyscale -->
-  <div class="row">
+  <div class="row pb-1">
     <div class="col-2 d-flex align-items-center">
       <p class="mb-0">Greyscale</p>
     </div>
