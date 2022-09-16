@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Color, HSLColor, HTMLNamedColor, NAMED_COLORS, RGBColor } from '../../app.beans';
 import * as tinycolor from 'tinycolor2';
 
@@ -7,13 +7,12 @@ import * as tinycolor from 'tinycolor2';
   templateUrl: './color-selector.component.html',
   styleUrls: ['./color-selector.component.scss']
 })
-export class ColorSelectorComponent implements OnInit {
+export class ColorSelectorComponent implements OnInit, OnChanges {
 
-  @Input() initialColor = tinycolor.random();
+  @Input() color = tinycolor.random();
   @Output() selectedColor: EventEmitter<tinycolor.Instance> = new EventEmitter<tinycolor.Instance>();
 
   colorInput: Color;
-  color: tinycolor.Instance;
 
   htmlNamedColors = NAMED_COLORS;
   selectedNamedColor: HTMLNamedColor | undefined = undefined;
@@ -25,7 +24,10 @@ export class ColorSelectorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.color = this.initialColor;
+    this.colorInput = new Color(this.color.toHslString(), this.color.toHexString(), this.color.toRgbString());
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     this.colorInput = new Color(this.color.toHslString(), this.color.toHexString(), this.color.toRgbString());
   }
 

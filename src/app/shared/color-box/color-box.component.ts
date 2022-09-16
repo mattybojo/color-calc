@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import * as tinycolor from 'tinycolor2';
 
 @Component({
@@ -11,6 +11,7 @@ export class ColorBoxComponent implements OnInit, OnChanges {
   @Input() color!: tinycolor.Instance;
   @Input() isSameMainColor: boolean = false;
   @Input() showLabels: boolean = true;
+  @Output() click: EventEmitter<any> = new EventEmitter<any>();
 
   hexString: string = '';
   rgbaString: string = '';
@@ -30,5 +31,10 @@ export class ColorBoxComponent implements OnInit, OnChanges {
     this.hexString = this.color.toHexString();
     this.rgbaString = this.color.toRgbString().toLowerCase();
     this.hslaString = this.color.toHslString();
+  }
+
+  colorClicked($event: any): void {
+    this.click.emit($event);
+    $event.stopPropagation();
   }
 }

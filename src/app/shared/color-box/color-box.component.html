@@ -1,4 +1,4 @@
-<div class="color-box-container">
+<div class="color-box-container" (click)="colorClicked($event)">
   <div
     class="color-square d-inline-flex flex-column justify-content-end me-2"
     [ngStyle]="{ 'background-color': hexString }"

@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12 col-md-6">
       <cc-color-selector
-        [initialColor]="color"
+        [color]="color"
         (selectedColor)="updateColors($event)"
       ></cc-color-selector>
     </div>
@@ -17,7 +17,10 @@
       <p class="mb-0">Complementary</p>
     </div>
     <div class="col-6 offset-4">
-      <cc-color-box [color]="complementaryColor"></cc-color-box>
+      <cc-color-box
+        [color]="complementaryColor"
+        (click)="updateColors(complementaryColor)"
+      ></cc-color-box>
     </div>
   </div>
   <hr />
@@ -30,6 +33,7 @@
       <cc-color-box
         [color]="splitCompColor"
         [isSameMainColor]="tc.equals(color, splitCompColor)"
+        (click)="updateColors(splitCompColor)"
         *ngFor="let splitCompColor of splitComplementaryColors"
       ></cc-color-box>
     </div>
@@ -44,6 +48,7 @@
       <cc-color-box
         [color]="triad"
         [isSameMainColor]="tc.equals(color, triad)"
+        (click)="updateColors(triad)"
         *ngFor="let triad of triadColors"
       ></cc-color-box>
     </div>
@@ -58,6 +63,7 @@
       <cc-color-box
         [color]="tetrad"
         [isSameMainColor]="tc.equals(color, tetrad)"
+        (click)="updateColors(tetrad)"
         *ngFor="let tetrad of tetradColors"
       ></cc-color-box>
     </div>
@@ -72,6 +78,7 @@
       <cc-color-box
         [color]="analogous"
         [isSameMainColor]="tc.equals(color, analogous)"
+        (click)="updateColors(analogous)"
         *ngFor="let analogous of analogousColors"
       ></cc-color-box>
     </div>
@@ -86,6 +93,7 @@
       <cc-color-box
         [color]="monochromatic"
         [isSameMainColor]="tc.equals(color, monochromatic)"
+        (click)="updateColors(monochromatic)"
         *ngFor="let monochromatic of monochromaticColors"
       ></cc-color-box>
     </div>
@@ -97,7 +105,10 @@
       <p class="mb-0">Greyscale</p>
     </div>
     <div class="col-6 offset-4">
-      <cc-color-box [color]="greyscaleColor"></cc-color-box>
+      <cc-color-box
+        [color]="greyscaleColor"
+        (click)="updateColors(greyscaleColor)"
+      ></cc-color-box>
     </div>
   </div>
 </div>
