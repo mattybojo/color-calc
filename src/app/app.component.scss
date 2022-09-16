@@ -43,11 +43,11 @@ p {
   cursor: pointer;
 }
 
-.color-dropdown.dropdown-menu.show {
+::ng-deep .color-dropdown.dropdown-menu.show {
   max-height: 320px;
   overflow-y: scroll;
 }
 
-.color-filter {
+::ng-deep .color-filter {
   height: 32px;
 }
