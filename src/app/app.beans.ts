@@ -315,7 +315,7 @@ export const NAMED_COLORS: HTMLNamedColor[] = [{
   name: 'MediumSlateBlue',
   hex: '#7B68EE'
 }, {
-  name: 'MediumSeaGreen',
+  name: 'MediumSpringGreen',
   hex: '#00FA9A'
 }, {
   name: 'MediumTurquoise',
