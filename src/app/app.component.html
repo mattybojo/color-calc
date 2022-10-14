@@ -4,10 +4,14 @@
       <cc-color-selector
         [color]="color"
         (selectedColor)="updateColors($event)"
+        (colorLocked)="isColorLocked = $event"
       ></cc-color-selector>
     </div>
     <div class="col-12 col-md-6 d-flex align-items-center main-color-box">
-      <cc-color-box [color]="color"></cc-color-box>
+      <cc-color-box
+        [color]="color"
+        [isColorLocked]="isColorLocked"
+      ></cc-color-box>
     </div>
   </div>
   <hr />
@@ -19,6 +23,7 @@
     <div class="col-6 offset-4">
       <cc-color-box
         [color]="complementaryColor"
+        [isColorLocked]="isColorLocked"
         (click)="updateColors(complementaryColor)"
       ></cc-color-box>
     </div>
@@ -33,6 +38,7 @@
       <cc-color-box
         [color]="splitCompColor"
         [isSameMainColor]="tc.equals(color, splitCompColor)"
+        [isColorLocked]="isColorLocked"
         (click)="updateColors(splitCompColor)"
         *ngFor="let splitCompColor of splitComplementaryColors"
       ></cc-color-box>
@@ -48,6 +54,7 @@
       <cc-color-box
         [color]="triad"
         [isSameMainColor]="tc.equals(color, triad)"
+        [isColorLocked]="isColorLocked"
         (click)="updateColors(triad)"
         *ngFor="let triad of triadColors"
       ></cc-color-box>
@@ -63,6 +70,7 @@
       <cc-color-box
         [color]="tetrad"
         [isSameMainColor]="tc.equals(color, tetrad)"
+        [isColorLocked]="isColorLocked"
         (click)="updateColors(tetrad)"
         *ngFor="let tetrad of tetradColors"
       ></cc-color-box>
@@ -78,6 +86,7 @@
       <cc-color-box
         [color]="analogous"
         [isSameMainColor]="tc.equals(color, analogous)"
+        [isColorLocked]="isColorLocked"
         (click)="updateColors(analogous)"
         *ngFor="let analogous of analogousColors"
       ></cc-color-box>
@@ -93,6 +102,7 @@
       <cc-color-box
         [color]="monochromatic"
         [isSameMainColor]="tc.equals(color, monochromatic)"
+        [isColorLocked]="isColorLocked"
         (click)="updateColors(monochromatic)"
         *ngFor="let monochromatic of monochromaticColors"
       ></cc-color-box>
@@ -107,6 +117,7 @@
     <div class="col-6 offset-4">
       <cc-color-box
         [color]="greyscaleColor"
+        [isColorLocked]="isColorLocked"
         (click)="updateColors(greyscaleColor)"
       ></cc-color-box>
     </div>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import * as tinycolor from 'tinycolor2';
-import { Color, HSLColor, HTMLNamedColor, NAMED_COLORS, RGBColor } from './app.beans';
+import { HTMLNamedColor, NAMED_COLORS } from './app.beans';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +21,8 @@ export class AppComponent {
   htmlNamedColors = NAMED_COLORS;
   selectedNamedColor: HTMLNamedColor | undefined = undefined;
   tc = tinycolor; // Used in template
+
+  isColorLocked: boolean = false;
 
   constructor() {
     this.color = tinycolor.random();

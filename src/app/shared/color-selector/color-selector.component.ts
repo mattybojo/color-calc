@@ -11,6 +11,7 @@ export class ColorSelectorComponent implements OnInit, OnChanges {
 
   @Input() color = tinycolor.random();
   @Output() selectedColor: EventEmitter<tinycolor.Instance> = new EventEmitter<tinycolor.Instance>();
+  @Output() colorLocked: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   colorInput: Color;
 

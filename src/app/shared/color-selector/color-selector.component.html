@@ -190,3 +190,20 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col">
+    <div
+      class="custom-control custom-checkbox d-flex justify-content-center mt-2"
+    >
+      <input
+        type="checkbox"
+        class="custom-control-input"
+        id="color-lock"
+        (change)="colorLocked.emit($any($event.target).checked)"
+      />
+      <label class="custom-control-label ms-1" for="color-lock">
+        Lock this color
+      </label>
+    </div>
+  </div>
+</div>

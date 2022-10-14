@@ -11,6 +11,7 @@ export class ColorBoxComponent implements OnInit, OnChanges {
   @Input() color!: tinycolor.Instance;
   @Input() isSameMainColor: boolean = false;
   @Input() showLabels: boolean = true;
+  @Input() isColorLocked: boolean = false;
   @Output() click: EventEmitter<any> = new EventEmitter<any>();
 
   hexString: string = '';
@@ -34,7 +35,9 @@ export class ColorBoxComponent implements OnInit, OnChanges {
   }
 
   colorClicked($event: any): void {
-    this.click.emit($event);
     $event.stopPropagation();
+    if (!this.isColorLocked) {
+      this.click.emit($event);
+    }
   }
 }
